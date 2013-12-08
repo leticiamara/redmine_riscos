@@ -1,0 +1,49 @@
+<h1>Listing riscos</h1>
+
+<table>
+  <tr>
+    <th>Numero</th>
+    <th>Status</th>
+    <th>Descricao</th>
+    <th>Fonte</th>
+    <th>Categoria</th>
+    <th>Data identificacao</th>
+    <th>Criado por</th>
+    <th>Dono</th>
+    <th>Probabilidade</th>
+    <th>Impacto</th>
+    <th>Prioridade</th>
+    <th>Gatilho</th>
+    <th>Estrategia</th>
+    <th>Acoes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @riscos.each do |risco| %>
+  <tr>
+    <td><%= risco.numero_id %></td>
+    <td><%= risco.status %></td>
+    <td><%= risco.descricao %></td>
+    <td><%= risco.fonte %></td>
+    <td><%= risco.categoria %></td>
+    <td><%= risco.data_identificacao %></td>
+    <td><%= risco.criado_por %></td>
+    <td><%= risco.dono %></td>
+    <td><%= risco.probabilidade %></td>
+    <td><%= risco.impacto %></td>
+    <td><%= risco.prioridade %></td>
+    <td><%= risco.gatilho %></td>
+    <td><%= risco.estrategia %></td>
+    <td><%= risco.acoes %></td>
+    <td><%= link_to 'Show', risco_path(risco, :project_id => @project.identifier) %></td>
+    <td><%= link_to 'Edit', edit_risco_path(risco, :project_id => @project.identifier) %></td>
+    <td><%= link_to 'Destroy', risco_path(risco, :project_id => @project.identifier), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Risco', new_risco_path(:project_id => @project.identifier) %>

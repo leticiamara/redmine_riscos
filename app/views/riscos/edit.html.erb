@@ -1,0 +1,6 @@
+<h1>Editing risco</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', risco_path(@risco, :project_id => @project.identifier) %> |
+<%= link_to_function 'Back', "history.back()" %>

@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Numero:</b>
+  <%= @risco.numero_id %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @risco.status %>
+</p>
+
+<p>
+  <b>Descricao:</b>
+  <%= @risco.descricao %>
+</p>
+
+<p>
+  <b>Fonte:</b>
+  <%= @risco.fonte %>
+</p>
+
+<p>
+  <b>Categoria:</b>
+  <%= @risco.categoria %>
+</p>
+
+<p>
+  <b>Data identificacao:</b>
+  <%= @risco.data_identificacao %>
+</p>
+
+<p>
+  <b>Criado por:</b>
+  <%= @risco.criado_por %>
+</p>
+
+<p>
+  <b>Dono:</b>
+  <%= @risco.dono %>
+</p>
+
+<p>
+  <b>Probabilidade:</b>
+  <%= @risco.probabilidade %>
+</p>
+
+<p>
+  <b>Impacto:</b>
+  <%= @risco.impacto %>
+</p>
+
+<p>
+  <b>Prioridade:</b>
+  <%= @risco.prioridade %>
+</p>
+
+<p>
+  <b>Gatilho:</b>
+  <%= @risco.gatilho %>
+</p>
+
+<p>
+  <b>Estrategia:</b>
+  <%= @risco.estrategia %>
+</p>
+
+<p>
+  <b>Acoes:</b>
+  <%= @risco.acoes %>
+</p>
+
+
+<%= link_to 'Edit', edit_risco_path(@risco, :project_id => @project.identifier) %> |
+<%= link_to_function 'Back', "history.back()" %>

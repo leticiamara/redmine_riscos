@@ -1,0 +1,75 @@
+<%= form_for(@risco) do |f| %>
+  <% if @risco.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@risco.errors.count, "error") %> prohibited this risco from being saved:</h2>
+
+      <ul>
+      <% @risco.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :project_id, :value => @project.identifier %>
+
+  <div class="field" id="codigo">
+    <%= f.label :numero_id %><br>
+    <%= f.number_field :numero_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select(:status, options_for_select([['Risco Inicial', 'Risco Inicial'],['Novo','Novo'],['Ocorrido','Ocorrido'],['Eliminado','Eliminado']])) %>
+  </div>
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_area :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :fonte %><br>
+    <%= f.select(:fonte, options_for_select([['Ambiente','Ambiente'],['Objetivos de Desempenho','Objetivos de Desempenho'],['Custo e Prazo','Custo e Prazo'],['Negocio','Negocio'],['Processo','Processo'],['Recurso Humano','Recurso Humano'],['Tecnico','Tecnico']])) %>
+  </div>
+  <div class="field">
+    <%= f.label :categoria %><br>
+    <%= f.select(:categoria, options_for_select([['Ambiente Organizacional','Ambiente Organizacional'],['Usuário','Usuario'],['Requisitos','Requisitos'],['Complexidade do Projeto','Complexidade do Projeto'],['Planejamento e Controle','Planejamento e Controle'],['Time','Time']])) %>
+  </div>
+  <div class="field">
+    <%= f.label :data_identificacao %><br>
+    <%= f.text_field :data_identificacao %> <%= calendar_for('risco_data_identificacao') %>
+  </div>
+  <div class="field">
+    <%= f.label :criado_por %><br>
+    <%= f.text_field :criado_por %>
+  </div>
+  <div class="field">
+    <%= f.label :dono %><br>
+    <%= f.text_field :dono %>
+  </div>
+  <div class="field">
+    <%= f.label :probabilidade %><br>
+    <%= f.select(:probabilidade, options_for_select([['Baixa','Baixa'],['Media','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
+  </div>
+  <div class="field">
+    <%= f.label :impacto %><br>
+    <%= f.select(:impacto, options_for_select([['Baixa','Baixa'],['Media','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
+  </div>
+  <div class="field">
+    <%= f.label :prioridade %><br>
+    <%= f.text_field :prioridade %>
+  </div>
+  <div class="field">
+    <%= f.label :gatilho %><br>
+    <%= f.text_area :gatilho %>
+  </div>
+  <div class="field">
+    <%= f.label :estrategia %><br>
+    <%= f.text_field :estrategia %>
+  </div>
+  <div class="field">
+    <%= f.label :acoes %><br>
+    <%= f.text_area :acoes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
