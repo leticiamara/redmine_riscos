@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>ID:</b>
+  <%= @acao.id %>
+</p>
+
+<p>
+  <b>Tipo:</b>
+  <%= @acao.tipo %>
+</p>
+
+<p>
+  <b>Titulo:</b>
+  <%= @acao.titulo %>
+</p>
+
+<p>
+  <b>Atribuido para:</b>
+  <%= @acao.atribuido_para %>
+</p>
+
+<p>
+  <b>Prazo:</b>
+  <%= @acao.prazo %>
+</p>
+
+<p>
+  <b>Data de conclusao:</b>
+  <%= @acao.data_de_conclusao %>
+</p>
+
+<p>
+  <b>Risco:</b>
+  <%= @acao.risco_id %>
+</p>
+
+
+<%= link_to 'Edit', controller: "acoes", action: :edit , id: @acao.id %> |
+<%= link_to_function 'Back', "history.back()" %>

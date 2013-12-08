@@ -14,8 +14,8 @@
   <%= f.hidden_field :project_id, :value => @project.identifier %>
 
   <div class="field" id="codigo">
-    <%= f.label :numero_id %><br>
-    <%= f.number_field :numero_id %>
+    <%= f.label 'ID' %><br>
+    <%= f.number_field :numero_id, :value => @risco.id, :readonly => true %>
   </div>
   <div class="field">
     <%= f.label :status %><br>

@@ -5,7 +5,7 @@ class RiscosController < ApplicationController
   # GET /riscos.json
   def index
     @riscos = Risco.all
-
+    @acoes = Acao.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @riscos }
@@ -16,7 +16,7 @@ class RiscosController < ApplicationController
   # GET /riscos/1.json
   def show
     @risco = Risco.find(params[:id])
-
+    @acoes = Acao.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @risco }

@@ -1,8 +1,8 @@
-<h1>Listing riscos</h1>
+<h1>Riscos</h1>
 
 <table>
   <tr>
-    <th>Numero</th>
+    <th>ID</th>
     <th>Status</th>
     <th>Descricao</th>
     <th>Fonte</th>
@@ -23,7 +23,7 @@
 
 <% @riscos.each do |risco| %>
   <tr>
-    <td><%= risco.numero_id %></td>
+    <td><%= link_to '#'+ risco.id.to_s, risco_path(risco, :project_id => @project.identifier) %> </td>
     <td><%= risco.status %></td>
     <td><%= risco.descricao %></td>
     <td><%= risco.fonte %></td>
@@ -36,8 +36,9 @@
     <td><%= risco.prioridade %></td>
     <td><%= risco.gatilho %></td>
     <td><%= risco.estrategia %></td>
-    <td><%= risco.acoes %></td>
-    <td><%= link_to 'Show', risco_path(risco, :project_id => @project.identifier) %></td>
+    <td>
+       
+    </td>
     <td><%= link_to 'Edit', edit_risco_path(risco, :project_id => @project.identifier) %></td>
     <td><%= link_to 'Destroy', risco_path(risco, :project_id => @project.identifier), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -47,3 +48,5 @@
 <br />
 
 <%= link_to 'New Risco', new_risco_path(:project_id => @project.identifier) %>
+<hr/>
+<%= render :template => 'acoes/index' %>
