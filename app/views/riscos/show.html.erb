@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Numero:</b>
-  <%= @risco.numero_id %>
+  <b>ID:</b>
+  <%= @risco.id %>
 </p>
 
 <p>
@@ -36,7 +36,7 @@
 </p>
 
 <p>
-  <b>Dono:</b>
+  <b>Atribuido para:</b>
   <%= @risco.dono %>
 </p>
 
@@ -65,11 +65,9 @@
   <%= @risco.estrategia %>
 </p>
 
-<p>
-  <b>Acoes:</b>
-  <%= @risco.acoes %>
-</p>
-
 
 <%= link_to 'Edit', edit_risco_path(@risco, :project_id => @project.identifier) %> |
-<%= link_to_function 'Back', "history.back()" %>
+<%= link_to_function 'Back', "history.back()" %> | 
+<hr/>
+<%= render :template => 'acaos/index' %>
+<%= link_to 'New acao', new_acao_path(:risco_id => @risco.id) %>

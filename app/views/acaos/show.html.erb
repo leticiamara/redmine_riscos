@@ -32,9 +32,9 @@
 
 <p>
   <b>Risco:</b>
-  <%= @acao.risco_id %>
+  <%= link_to '#'+ @acao.risco_id.to_s, risco_path(@risco, :project_id => @project.identifier) %>
 </p>
 
 
-<%= link_to 'Edit', controller: "acoes", action: :edit , id: @acao.id %> |
+<%= link_to 'Edit', edit_acao_path(@acao) %> |
 <%= link_to_function 'Back', "history.back()" %>

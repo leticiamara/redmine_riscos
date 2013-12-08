@@ -38,12 +38,12 @@
     <%= f.text_field :data_identificacao %> <%= calendar_for('risco_data_identificacao') %>
   </div>
   <div class="field">
-    <%= f.label :criado_por %><br>
-    <%= f.text_field :criado_por %>
+    <%= f.label 'Adiconado por' %><br>
+    <%= f.text_field :criado_por, :value => @adicionadoPor, :readonly => true %>
   </div>
   <div class="field">
-    <%= f.label :dono %><br>
-    <%= f.text_field :dono %>
+    <%= f.label 'Atribuido para' %><br>
+    <%= f.collection_select :dono, @users, :id, :name, :prompt => 'Selecione um membro' %>
   </div>
   <div class="field">
     <%= f.label :probabilidade %><br>

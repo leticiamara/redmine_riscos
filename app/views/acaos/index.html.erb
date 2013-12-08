@@ -14,21 +14,18 @@
 
 <% @acoes.each do |acao| %>
   <tr>
-    <td><%= link_to '#' + acao.id.to_s, controller: "acoes", action: :show , id: acao.id %></td>
+    <td><%= link_to '#' + acao.id.to_s, acao %></td>
     <td><%= acao.tipo %></td>
     <td><%= acao.titulo %></td>
     <td><%= acao.descricao %></td>
     <td><%= acao.atribuido_para %></td>
     <td><%= acao.prazo %></td>
     <td><%= acao.data_de_conclusao %></td>
-    <td><%= acao.risco_id %>
-       
-    <td></td>
-    <td><%= link_to 'Edit', controller: "acoes", action: :edit , id: acao.id %></td>
-    <td><%= link_to 'Destroy', controller: "acoes", action: :destroy, id: acao.id, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to '#'+ acao.risco_id.to_s, risco_path(:id => acao.risco_id, :project_id => @project.identifier) %></td>
+
+    <td><%= link_to 'Edit', edit_acao_path(acao) %></td>
+    <td><%= link_to 'Destroy', acao_path(acao), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 <br />
-
-<%= link_to 'New acao', controller: "acoes", action: :new %>

@@ -9,13 +9,12 @@
     <th>Categoria</th>
     <th>Data identificacao</th>
     <th>Criado por</th>
-    <th>Dono</th>
+    <th>Atribuido para</th>
     <th>Probabilidade</th>
     <th>Impacto</th>
     <th>Prioridade</th>
     <th>Gatilho</th>
     <th>Estrategia</th>
-    <th>Acoes</th>
     <th></th>
     <th></th>
     <th></th>
@@ -36,9 +35,6 @@
     <td><%= risco.prioridade %></td>
     <td><%= risco.gatilho %></td>
     <td><%= risco.estrategia %></td>
-    <td>
-       
-    </td>
     <td><%= link_to 'Edit', edit_risco_path(risco, :project_id => @project.identifier) %></td>
     <td><%= link_to 'Destroy', risco_path(risco, :project_id => @project.identifier), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -49,4 +45,4 @@
 
 <%= link_to 'New Risco', new_risco_path(:project_id => @project.identifier) %>
 <hr/>
-<%= render :template => 'acoes/index' %>
+<%= render :template => 'acaos/index' %>

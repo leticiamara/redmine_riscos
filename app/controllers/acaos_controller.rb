@@ -1,4 +1,4 @@
-class AcoesController < ApplicationController
+class AcaosController < ApplicationController
   unloadable
   # before_filter :find_project , :only => [:show, :new, :edit, :update]
   # GET /acoes
@@ -26,8 +26,14 @@ class AcoesController < ApplicationController
   # GET /acoes/new
   # GET /acoes/new.json
   def new
+  	@risco = Risco.find(params[:risco_id])
+    @project = Project.find(@risco.project_id)
     @acao = Acao.new
-
+    @members = Member.where(project_id: @project.id)
+    @users = []
+    @members.each do |member|
+      @users += User.where(id: member.user_id)
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @acao }
@@ -37,12 +43,19 @@ class AcoesController < ApplicationController
   # GET /acoes/1/edit
   def edit
     @acao = Acao.find(params[:id])
+    @risco = Risco.find(@acao.risco_id)
+    @project = Project.find(@risco.project_id)
+    @members = Member.where(project_id: @project.id)
+    @users = []
+    @members.each do |member|
+      @users += User.where(id: member.user_id)
+    end
   end
 
   # POST /acoes
   # POST /acoes.json
   def create
-    @acao = Acao.new(params[:Acao])
+    @acao = Acao.new(params[:acao])
 
     respond_to do |format|
       if @acao.save
@@ -75,10 +88,12 @@ class AcoesController < ApplicationController
   # DELETE /acoes/1.json
   def destroy
     @acao = Acao.find(params[:id])
+    @risco = Risco.find(2)
+    # @project = Project.find(@risco.project_id)
     @acao.destroy
 
     respond_to do |format|
-      format.html { redirect_to acoes_url }
+      format.html { redirect_to riscos_url(:project_id => @risco.project_id) }
       format.json { head :no_content }
     end
   end

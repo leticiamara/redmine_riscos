@@ -1,11 +1,14 @@
 class RiscosController < ApplicationController
   unloadable
-  before_filter :find_project , :only => [:index, :show, :new, :edit, :destroy, :update]
+  before_filter :find_project , :only => [:index, :show, :new, :edit, :destroy]
   # GET /riscos
   # GET /riscos.json
   def index
-    @riscos = Risco.all
-    @acoes = Acao.all
+    @riscos = Risco.where(project_id: @project.identifier)
+    @acoes = []
+    @riscos.each do |risco|
+        @acoes += Acao.where(risco_id: risco.id)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @riscos }
@@ -16,7 +19,7 @@ class RiscosController < ApplicationController
   # GET /riscos/1.json
   def show
     @risco = Risco.find(params[:id])
-    @acoes = Acao.all
+    @acoes = Acao.where(risco_id: @risco.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @risco }
@@ -26,6 +29,12 @@ class RiscosController < ApplicationController
   # GET /riscos/new
   # GET /riscos/new.json
   def new
+    @members = Member.where(project_id: @project.id)
+    @users = []
+    @members.each do |member|
+      @users += User.where(id: member.user_id)
+    end
+    @adicionadoPor = User.current.name
     @risco = Risco.new
 
     respond_to do |format|
@@ -37,6 +46,12 @@ class RiscosController < ApplicationController
   # GET /riscos/1/edit
   def edit
     @risco = Risco.find(params[:id])
+    @members = Member.where(project_id: @project.id)
+    @users = []
+    @members.each do |member|
+      @users += User.where(id: member.user_id)
+    end
+    @adicionadoPor = @risco.criado_por
   end
 
   # POST /riscos
@@ -62,7 +77,7 @@ class RiscosController < ApplicationController
 
     respond_to do |format|
       if @risco.update_attributes(params[:risco])
-        format.html { redirect_to risco_url(@risco, :project_id), notice: 'Risco was successfully updated.' }
+        format.html { redirect_to risco_path(@risco, :project_id => @risco.project_id), notice: 'Risco was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -2,4 +2,4 @@
 # See: http://guides.rubyonrails.org/routing.html
 
 resources :riscos
-resources :acoes
+resources :acaos

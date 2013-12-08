@@ -1,0 +1,50 @@
+<%= form_for(@acao) do |f| %>
+  <% if @acao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@acao.errors.count, "error") %> prohibited this acao from being saved:</h2>
+
+      <ul>
+      <% @acao.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" id="codigo">
+    <%= f.label 'ID' %><br>
+    <%= f.number_field :id, :value => @acao.id, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label 'Tipo' %><br>
+    <%= f.select(:tipo, options_for_select([['acao Inicial', 'acao Inicial'],['Novo','Novo'],['Ocorrido','Ocorrido'],['Eliminado','Eliminado']])) %>
+  </div>
+  <div class="field">
+    <%= f.label "Titulo" %><br>
+    <%= f.text_field :titulo %>
+  </div>
+  <div class="field">
+    <%= f.label 'Descricao' %><br>
+    <%= f.text_area :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label "Atribuido para" %><br>
+    <%= f.collection_select :atribuido_para, @users, :id, :name, :prompt => 'Selecione um membro' %>
+  </div>
+  <div class="field">
+    <%= f.label "Prazo" %><br>
+    <%= f.text_field :prazo %> <%= calendar_for('acao_prazo') %>
+  </div>
+  <div class="field">
+    <%= f.label "Data de conclusao" %><br>
+    <%= f.text_field :data_de_conclusao %> <%= calendar_for('acao_data_de_conclusao') %>
+  </div>
+   <div class="field">
+    <%= f.label 'Risco' %><br>
+    <%= f.number_field :risco_id, :value => @risco.id, :readonly => true %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+ 
+<% end %>
