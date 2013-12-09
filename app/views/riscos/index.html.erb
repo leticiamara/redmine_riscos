@@ -17,7 +17,7 @@
 <% @riscos.each do |risco| %>
   <tr class="issue">
     <td><%= link_to '#'+ risco.id.to_s, risco_path(risco, :project_id => @project.identifier) %> </td>
-    <td>titulo do risco</td>
+    <td><%= risco.titulo %></td>
     <td><%= risco.status %></td>
     <td><%= risco.prioridade %></td>
     <td><%= risco.data_identificacao %></td>

@@ -16,15 +16,15 @@
 
   <p>
     <%= f.label 'ID' %>
-    <%= f.number_field :numero_id, :value => @risco.id, :readonly => true %>
+    <%= f.number_field :id, :value => @risco.id, :readonly => true %>
   </p>
   <p>
-    <%= f.label 'Título' %>
-    <%= f.text_field :estrategia %>
+    <%= f.label 'Título' %><span class="required">*</span>
+    <%= f.text_field :titulo, :required => true %>
   </p>
   <p>
     <%= f.label "Status" %>
-    <%= f.select(:status, options_for_select([['Risco Inicial', 'Risco Inicial'],['Novo','Novo'],['Ocorrido','Ocorrido'],['Eliminado','Eliminado']])) %>
+    <%= f.select(:status, options_for_select([['Aberto', 'Aberto'],['Fechado','Fechado'],['Em Andamento','Em Andamento'],['Suspenso','Suspenso'],['Cancelado','Cancelado'], ['Rejeitado','Rejeitado'], ['Resolvido','Resolvido']])) %>
   </p>
   <p>
     <%= f.label "Descrição"%><span class="required">* </span>
@@ -33,11 +33,11 @@
   <div class="splitcontentleft">
   <p>
     <%= f.label "Fonte" %>
-    <%= f.select(:fonte, options_for_select([['Ambiente','Ambiente'],['Objetivos de Desempenho','Objetivos de Desempenho'],['Custo e Prazo','Custo e Prazo'],['Negocio','Negocio'],['Processo','Processo'],['Recurso Humano','Recurso Humano'],['Tecnico','Tecnico']])) %>
+    <%= f.select(:fonte, options_for_select([['Ambiente Organizacional','Ambiente Organizacional'],['Usuário','Usuario'],['Requisitos','Requisitos'],['Complexidade do Projeto','Complexidade do Projeto'],['Planejamento e Controle','Planejamento e Controle'],['Time','Time']])) %>
   </p>
   <p>
     <%= f.label "Categoria" %>
-    <%= f.select(:categoria, options_for_select([['Ambiente Organizacional','Ambiente Organizacional'],['Usuário','Usuario'],['Requisitos','Requisitos'],['Complexidade do Projeto','Complexidade do Projeto'],['Planejamento e Controle','Planejamento e Controle'],['Time','Time']])) %>
+    <%= f.select(:categoria, options_for_select([['Política Organizacional','Política Organizacional'],['Usuário','Usuario'],['Requisitos','Requisitos'],['Complexidade do Projeto','Complexidade do Projeto'],['Planejamento e Controle','Planejamento e Controle'],['Time','Time']])) %>
   </p>
   <p>
     <%= f.label "Probabilidade" %>    
@@ -62,12 +62,12 @@
     <%= f.text_field :criado_por, :value => @adicionadoPor, :readonly => true %>
   </p>
   <p>
-    <%= f.label 'Atribuido para' %>
+    <%= f.label 'Atribuído para' %>
     <%= f.collection_select :dono, @users, :name, :name, :prompt => 'Selecione um membro' %>
   </p>
   <p>
     <%= f.label 'Estratégia' %>
-    <%= f.text_field :estrategia %>
+    <%= f.select(:estrategia, options_for_select([['Eliminar','Eliminar'],['Transferir','Transferir'],['Mitigar','Mitigar'],['Aceitar','Aceitar']])) %>
   </p>
   </div>
   <p>
