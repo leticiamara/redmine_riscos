@@ -1,73 +1,69 @@
 <p id="notice"><%= notice %></p>
+<div class="contextual">
+  <%= link_to_function 'Voltar', "history.back()", :class => 'icon icon-reload' %>
+  <%= link_to 'Editar', edit_risco_path(@risco, :project_id => @project.identifier), :class => 'icon icon-edit' %>
+  <td><%= link_to 'Excluir', risco_path(@risco, :project_id => @project.identifier), method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => 'icon icon-del' %></td>
+</div>
+<h2> 
+  Risco #<%= @risco.id %>
+</h2>
 
-<p>
-  <b>ID:</b>
-  <%= @risco.id %>
-</p>
+<div class='issue tracker-1 status-1 priority-2 priority-default created-by-me details'>
+<div class="subject">
+  <h3>
+    Título
+  </h3>
+</div>
 
-<p>
-  <b>Status:</b>
-  <%= @risco.status %>
-</p>
+<br/>
 
-<p>
-  <b>Descricao:</b>
-  <%= @risco.descricao %>
-</p>
+<table class="attributes">
+<tr>
+  <th >Descrição: </th>
+  <td ><%= @risco.descricao %></td>
+</tr>
 
-<p>
-  <b>Fonte:</b>
-  <%= @risco.fonte %>
-</p>
+<tr> 
+  <th>Status: </th>
+  <td><%= @risco.status %></td>
+  <th>Fonte: </th>
+  <td><%= @risco.fonte %></td>
+</tr>
 
-<p>
-  <b>Categoria:</b>
-  <%= @risco.categoria %>
-</p>
+<tr>
+  <th>Categoria: </th>
+  <td><%= @risco.categoria %></td>
+  <th>Data de identificação: </th>
+  <td><%=@risco.data_identificacao %></td>  
+</tr>
 
-<p>
-  <b>Data identificacao:</b>
-  <%= @risco.data_identificacao %>
-</p>
+<tr>
+  <th>Adicionado por: </th>
+  <td><%= @risco.criado_por %></td>
+  <th>Atribuído para: </th>
+  <td><%=@risco.dono %></td>
+</tr>
 
-<p>
-  <b>Criado por:</b>
-  <%= @risco.criado_por %>
-</p>
+<tr>
+  <th>Probabilidade: </th>
+  <td><%= @risco.probabilidade %></td>
+  <th>Impacto: </th>
+  <td><%=@risco.impacto %></td>
+</tr>
 
-<p>
-  <b>Atribuido para:</b>
-  <%= @risco.dono %>
-</p>
+<tr>
+  <th>Prioridade: </th>
+  <td><%= @risco.prioridade %></td>
+  <th>Estratégia: </th>
+  <td><%=@risco.estrategia %></td>
+</tr>
 
-<p>
-  <b>Probabilidade:</b>
-  <%= @risco.probabilidade %>
-</p>
+<tr>
+  <th >Gatilho: </th>
+  <td ><%= @risco.gatilho %></td>
+</tr>
 
-<p>
-  <b>Impacto:</b>
-  <%= @risco.impacto %>
-</p>
-
-<p>
-  <b>Prioridade:</b>
-  <%= @risco.prioridade %>
-</p>
-
-<p>
-  <b>Gatilho:</b>
-  <%= @risco.gatilho %>
-</p>
-
-<p>
-  <b>Estrategia:</b>
-  <%= @risco.estrategia %>
-</p>
-
-
-<%= link_to 'Edit', edit_risco_path(@risco, :project_id => @project.identifier) %> |
-<%= link_to_function 'Back', "history.back()" %> | 
+</table>
 <hr/>
 <%= render :template => 'acaos/index' %>
-<%= link_to 'New acao', new_acao_path(:risco_id => @risco.id) %>
+<%= link_to 'Nova ação', new_acao_path(:risco_id => @risco.id), :class => 'icon icon-add' %>

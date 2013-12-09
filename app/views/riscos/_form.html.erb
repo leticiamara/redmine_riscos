@@ -1,3 +1,4 @@
+<div class='box tabular new_issue'>
 <%= form_for(@risco) do |f| %>
   <% if @risco.errors.any? %>
     <div id="error_explanation">
@@ -13,63 +14,69 @@
 
   <%= f.hidden_field :project_id, :value => @project.identifier %>
 
-  <div class="field" id="codigo">
-    <%= f.label 'ID' %><br>
+  <p>
+    <%= f.label 'ID' %>
     <%= f.number_field :numero_id, :value => @risco.id, :readonly => true %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.select(:status, options_for_select([['Risco Inicial', 'Risco Inicial'],['Novo','Novo'],['Ocorrido','Ocorrido'],['Eliminado','Eliminado']])) %>
-  </div>
-  <div class="field">
-    <%= f.label :descricao %><br>
-    <%= f.text_area :descricao %>
-  </div>
-  <div class="field">
-    <%= f.label :fonte %><br>
-    <%= f.select(:fonte, options_for_select([['Ambiente','Ambiente'],['Objetivos de Desempenho','Objetivos de Desempenho'],['Custo e Prazo','Custo e Prazo'],['Negocio','Negocio'],['Processo','Processo'],['Recurso Humano','Recurso Humano'],['Tecnico','Tecnico']])) %>
-  </div>
-  <div class="field">
-    <%= f.label :categoria %><br>
-    <%= f.select(:categoria, options_for_select([['Ambiente Organizacional','Ambiente Organizacional'],['Usuário','Usuario'],['Requisitos','Requisitos'],['Complexidade do Projeto','Complexidade do Projeto'],['Planejamento e Controle','Planejamento e Controle'],['Time','Time']])) %>
-  </div>
-  <div class="field">
-    <%= f.label :data_identificacao %><br>
-    <%= f.text_field :data_identificacao %> <%= calendar_for('risco_data_identificacao') %>
-  </div>
-  <div class="field">
-    <%= f.label 'Adiconado por' %><br>
-    <%= f.text_field :criado_por, :value => @adicionadoPor, :readonly => true %>
-  </div>
-  <div class="field">
-    <%= f.label 'Atribuido para' %><br>
-    <%= f.collection_select :dono, @users, :id, :name, :prompt => 'Selecione um membro' %>
-  </div>
-  <div class="field">
-    <%= f.label :probabilidade %><br>
-    <%= f.select(:probabilidade, options_for_select([['Baixa','Baixa'],['Media','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
-  </div>
-  <div class="field">
-    <%= f.label :impacto %><br>
-    <%= f.select(:impacto, options_for_select([['Baixa','Baixa'],['Media','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
-  </div>
-  <div class="field">
-    <%= f.label :prioridade %><br>
-    <%= f.text_field :prioridade %>
-  </div>
-  <div class="field">
-    <%= f.label :gatilho %><br>
-    <%= f.text_area :gatilho %>
-  </div>
-  <div class="field">
-    <%= f.label :estrategia %><br>
+  </p>
+  <p>
+    <%= f.label 'Título' %>
     <%= f.text_field :estrategia %>
+  </p>
+  <p>
+    <%= f.label "Status" %>
+    <%= f.select(:status, options_for_select([['Risco Inicial', 'Risco Inicial'],['Novo','Novo'],['Ocorrido','Ocorrido'],['Eliminado','Eliminado']])) %>
+  </p>
+  <p>
+    <%= f.label "Descrição"%><span class="required">* </span>
+    <%= f.text_area :descricao, :required => true, :class => 'wiki-edit', :rows => 10, :cols => 60  %>
+  </p>
+  <div class="splitcontentleft">
+  <p>
+    <%= f.label "Fonte" %>
+    <%= f.select(:fonte, options_for_select([['Ambiente','Ambiente'],['Objetivos de Desempenho','Objetivos de Desempenho'],['Custo e Prazo','Custo e Prazo'],['Negocio','Negocio'],['Processo','Processo'],['Recurso Humano','Recurso Humano'],['Tecnico','Tecnico']])) %>
+  </p>
+  <p>
+    <%= f.label "Categoria" %>
+    <%= f.select(:categoria, options_for_select([['Ambiente Organizacional','Ambiente Organizacional'],['Usuário','Usuario'],['Requisitos','Requisitos'],['Complexidade do Projeto','Complexidade do Projeto'],['Planejamento e Controle','Planejamento e Controle'],['Time','Time']])) %>
+  </p>
+  <p>
+    <%= f.label "Probabilidade" %>    
+    <%= f.select(:probabilidade, options_for_select([['Muito Baixa','Muito Baixa'],['Baixa','Baixa'],['Media','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
+  </p>
+  <p>
+    <%= f.label 'Impacto'%>
+    <%= f.select(:impacto, options_for_select([['Muito Baixa','Muito Baixa'],['Baixa','Baixa'],['Media','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
+  </p>
+  <p>
+    <%= f.label 'Prioridade' %>
+    <%= f.text_field :prioridade, :value => 'Muito Baixa', :readonly => true %>
+  </p>
   </div>
-  <div class="field">
-    <%= f.label :acoes %><br>
-    <%= f.text_area :acoes %>
+  <div class="splitcontentright">
+  <p>
+    <%= f.label "Data de identificação" %>
+    <%= f.text_field :data_identificacao %> <%= calendar_for('risco_data_identificacao') %>
+  </p>
+  <p>
+    <%= f.label 'Adiconado por' %>
+    <%= f.text_field :criado_por, :value => @adicionadoPor, :readonly => true %>
+  </p>
+  <p>
+    <%= f.label 'Atribuido para' %>
+    <%= f.collection_select :dono, @users, :name, :name, :prompt => 'Selecione um membro' %>
+  </p>
+  <p>
+    <%= f.label 'Estratégia' %>
+    <%= f.text_field :estrategia %>
+  </p>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <p>
+    <%= f.label "Gatilho" %>
+    <%= f.text_area :gatilho, :class => 'wiki-edit', :rows => 10, :cols => 60 %>
+  </p>
+  <br/>
+  <p>
+    <%= f.submit "Salvar"%>
+  </p>
 <% end %>
+</div>

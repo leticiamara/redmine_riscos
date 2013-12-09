@@ -1,7 +1,7 @@
 class CreateRiscos < ActiveRecord::Migration
   def change
     create_table :riscos do |t|
-      t.integer :numero_id
+      t.string :titulo
       t.string :status
       t.text :descricao
       t.string :fonte
@@ -14,7 +14,6 @@ class CreateRiscos < ActiveRecord::Migration
       t.string :prioridade
       t.text :gatilho
       t.string :estrategia
-      t.text :acoes
       t.string :project_id
     end
   end

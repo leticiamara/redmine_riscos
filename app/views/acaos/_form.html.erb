@@ -1,3 +1,4 @@
+<div class='box tabular new_issue'>
 <%= form_for(@acao) do |f| %>
   <% if @acao.errors.any? %>
     <div id="error_explanation">
@@ -11,40 +12,42 @@
     </div>
   <% end %>
 
-  <div class="field" id="codigo">
-    <%= f.label 'ID' %><br>
+  <p>
+    <%= f.label 'ID' %>
     <%= f.number_field :id, :value => @acao.id, :readonly => true %>
-  </div>
-  <div class="field">
-    <%= f.label 'Tipo' %><br>
-    <%= f.select(:tipo, options_for_select([['acao Inicial', 'acao Inicial'],['Novo','Novo'],['Ocorrido','Ocorrido'],['Eliminado','Eliminado']])) %>
-  </div>
-  <div class="field">
-    <%= f.label "Titulo" %><br>
+  </p>
+  <p>
+    <%= f.label 'Tipo' %>
+    <%= f.select(:tipo, options_for_select([['Mitigação', 'Mitigação'],['Transferência','Transferência'],['Eliminação','Eliminação'],['Contigência','Contigência']])) %>
+  </p>
+  <p>
+    <%= f.label "Título" %>
     <%= f.text_field :titulo %>
-  </div>
-  <div class="field">
-    <%= f.label 'Descricao' %><br>
-    <%= f.text_area :descricao %>
-  </div>
-  <div class="field">
-    <%= f.label "Atribuido para" %><br>
-    <%= f.collection_select :atribuido_para, @users, :id, :name, :prompt => 'Selecione um membro' %>
-  </div>
-  <div class="field">
-    <%= f.label "Prazo" %><br>
+  </p>
+  <p>
+    <%= f.label 'Descrição' %>
+    <%= f.text_area :descricao, :class => 'wiki-edit', :rows => 10, :cols => 60 %>
+  </p>
+  <p>
+    <%= f.label "Atribuído para" %>
+    <%= f.collection_select :atribuido_para, @users, :name, :name, :prompt => 'Selecione um membro' %>
+  </p>
+  <p>
+    <%= f.label "Prazo" %>
     <%= f.text_field :prazo %> <%= calendar_for('acao_prazo') %>
-  </div>
-  <div class="field">
-    <%= f.label "Data de conclusao" %><br>
+  </p>
+  <p>
+    <%= f.label "Data de conclusão" %>
     <%= f.text_field :data_de_conclusao %> <%= calendar_for('acao_data_de_conclusao') %>
-  </div>
-   <div class="field">
-    <%= f.label 'Risco' %><br>
+  </p>
+   <p>
+    <%= f.label 'Risco' %>
     <%= f.number_field :risco_id, :value => @risco.id, :readonly => true %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </p>
+  <br/>
+  <p>
+    <%= f.submit "Salvar"%>
+  </p>
  
 <% end %>
+</div>

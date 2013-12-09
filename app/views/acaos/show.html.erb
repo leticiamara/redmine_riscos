@@ -1,22 +1,33 @@
 <p id="notice"><%= notice %></p>
+<div class="contextual">
+  <%= link_to_function 'Voltar', "history.back()", :class => 'icon icon-reload' %>
+  <%= link_to 'Editar', edit_acao_path(@acao), :class => 'icon icon-edit' %>
+  <%= link_to 'Excluir', acao_path(@acao), method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => 'icon icon-del' %>
+</div>
+<h2> 
+  Ação #<%= @acao.id %>
+</h2>
 
+<div class='issue tracker-1 status-1 priority-2 priority-default created-by-me details'>
+<div class="subject">
+<h3>Titulo: <%= @acao.titulo %></h3>
+  
+</div>
 <p>
-  <b>ID:</b>
-  <%= @acao.id %>
+  
 </p>
-
 <p>
   <b>Tipo:</b>
   <%= @acao.tipo %>
 </p>
 
 <p>
-  <b>Titulo:</b>
-  <%= @acao.titulo %>
+  <b>Descrição:</b>
+  <%= @acao.descricao %>
 </p>
 
 <p>
-  <b>Atribuido para:</b>
+  <b>Atribuído para:</b>
   <%= @acao.atribuido_para %>
 </p>
 
@@ -34,7 +45,3 @@
   <b>Risco:</b>
   <%= link_to '#'+ @acao.risco_id.to_s, risco_path(@risco, :project_id => @project.identifier) %>
 </p>
-
-
-<%= link_to 'Edit', edit_acao_path(@acao) %> |
-<%= link_to_function 'Back', "history.back()" %>

@@ -1,31 +1,35 @@
-<h1>Acoes</h1>
+<h2>Ações</h2>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Tipo</th>
-    <th>Titulo</th>
-    <th>Descricao</th>
-    <th>Artibuido para</th>
-    <th>Prazo</th>
-    <th>Data de conclusao</th>
-    <th>Risco</th>
-  </tr>
+<table class="list issues">
+  <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Título</th>
+        <th>Artibuído para</th>
+        <th>Prazo</th>
+        <th>Data de conclusão</th>
+        <th>Risco</th>
+        <th></th>
+        <th></th>
+      </tr>
+  </thead>
 
-<% @acoes.each do |acao| %>
-  <tr>
+  <tbody>
+  <% @acoes.each do |acao| %>
+  <tr class="issue">
     <td><%= link_to '#' + acao.id.to_s, acao %></td>
     <td><%= acao.tipo %></td>
     <td><%= acao.titulo %></td>
-    <td><%= acao.descricao %></td>
     <td><%= acao.atribuido_para %></td>
     <td><%= acao.prazo %></td>
     <td><%= acao.data_de_conclusao %></td>
     <td><%= link_to '#'+ acao.risco_id.to_s, risco_path(:id => acao.risco_id, :project_id => @project.identifier) %></td>
 
-    <td><%= link_to 'Edit', edit_acao_path(acao) %></td>
-    <td><%= link_to 'Destroy', acao_path(acao), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Editar', edit_acao_path(acao), :class => 'icon icon-edit' %></td>
+    <td><%= link_to 'Excluir', acao_path(acao), method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => 'icon icon-del' %></td>
   </tr>
-<% end %>
+  <% end %>
+  </tbody>
 </table>
 <br />

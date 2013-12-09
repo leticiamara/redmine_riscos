@@ -1,48 +1,32 @@
+<div class="contextual">
+    <%= link_to 'Novo Risco', new_risco_path(:project_id => @project.identifier), :class => 'icon icon-add'%>
+</div>
 <h1>Riscos</h1>
-
-<table>
+<div class="autoscroll" >
+<table class="list issues">
   <tr>
     <th>ID</th>
+    <th>Título</th>
     <th>Status</th>
-    <th>Descricao</th>
-    <th>Fonte</th>
-    <th>Categoria</th>
-    <th>Data identificacao</th>
-    <th>Criado por</th>
-    <th>Atribuido para</th>
-    <th>Probabilidade</th>
-    <th>Impacto</th>
     <th>Prioridade</th>
-    <th>Gatilho</th>
-    <th>Estrategia</th>
-    <th></th>
+    <th>Data de identificação</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @riscos.each do |risco| %>
-  <tr>
+  <tr class="issue">
     <td><%= link_to '#'+ risco.id.to_s, risco_path(risco, :project_id => @project.identifier) %> </td>
+    <td>titulo do risco</td>
     <td><%= risco.status %></td>
-    <td><%= risco.descricao %></td>
-    <td><%= risco.fonte %></td>
-    <td><%= risco.categoria %></td>
-    <td><%= risco.data_identificacao %></td>
-    <td><%= risco.criado_por %></td>
-    <td><%= risco.dono %></td>
-    <td><%= risco.probabilidade %></td>
-    <td><%= risco.impacto %></td>
     <td><%= risco.prioridade %></td>
-    <td><%= risco.gatilho %></td>
-    <td><%= risco.estrategia %></td>
-    <td><%= link_to 'Edit', edit_risco_path(risco, :project_id => @project.identifier) %></td>
-    <td><%= link_to 'Destroy', risco_path(risco, :project_id => @project.identifier), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= risco.data_identificacao %></td>
+    <td><%= link_to 'Editar', edit_risco_path(risco, :project_id => @project.identifier), :class => 'icon icon-edit' %></td>
+    <td><%= link_to 'Excluir', risco_path(risco, :project_id => @project.identifier), method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => 'icon icon-del' %></td>
   </tr>
 <% end %>
 </table>
-
+</div>
 <br />
-
-<%= link_to 'New Risco', new_risco_path(:project_id => @project.identifier) %>
 <hr/>
 <%= render :template => 'acaos/index' %>
