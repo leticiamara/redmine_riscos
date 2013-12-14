@@ -47,11 +47,11 @@
   </p>
   <p>
     <%= f.label 'Impacto'%>
-    <%= f.select(:impacto, options_for_select([['Muito Baixa','Muito Baixa'],['Baixa','Baixa'],['Média','Média'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
+    <%= f.select(:impacto, options_for_select([['Muito Baixo','Muito Baixo'],['Baixo','Baixo'],['Médio','Médio'],['Alto','Alto'],['Muito Alta','Muito Alto']]))  %>
   </p>
   <p>
     <%= f.label 'Prioridade' %>
-    <%= f.select(:prioridade, options_for_select([['Muito Baixa','Muito Baixa'],['Baixa','Baixa'],['Média','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']])) %>
+    <%= f.text_field :prioridade, :readonly => true %>
   </p>
   </div>
   <div class="splitcontentright">
@@ -94,6 +94,16 @@
       carregarCategorias(fonteSelected);
     });
 
+    $('#risco_probabilidade').change(function() {
+      prioridade = calcularPrioridade($('#risco_probabilidade').val(), $('#risco_impacto').val());
+      $('#risco_prioridade').val(prioridade);
+    });
+
+    $('#risco_impacto').change(function() {
+      prioridade = calcularPrioridade($('#risco_probabilidade').val(), $('#risco_impacto').val());
+      $('#risco_prioridade').val(prioridade);
+    });
+
     function carregarCategorias(fonteSelected){
       var fontes = associarCategoriasAFontes();
       if(fonteSelected == ""){
@@ -110,6 +120,14 @@
       }
     }
 
+    function calcularPrioridade(probabilidade, impacto){
+      var arrayProbabilidade = criarArrayProbabilidade();
+      var arrayImpacto = criarArrayImpacto();
+      var matrizPrioridade = criarMatrizPrioridade();
+
+      return matrizPrioridade[arrayProbabilidade[probabilidade]][arrayImpacto[impacto]];
+    }
+
     function associarCategoriasAFontes(){
       var fontes = new Array();
 
@@ -122,6 +140,66 @@
 
       return fontes;
     }
+
+    function criarArrayProbabilidade(){
+      var probabilidade = new Array();
+      probabilidade['Muito Baixa'] = 0;
+      probabilidade['Baixa'] = 1;
+      probabilidade['Média'] = 2;
+      probabilidade['Alta'] = 3;
+      probabilidade['Muito Alta'] = 4;
+      return probabilidade;
+    }
+
+    function criarArrayImpacto(){
+      var impacto = new Array();
+      impacto['Muito Baixo'] = 0;
+      impacto['Baixo'] = 1;
+      impacto['Médio'] = 2;
+      impacto['Alto'] = 3;
+      impacto['Muito Alto'] = 4;
+      return impacto;
+    }
+    function criarMatrizPrioridade(){
+      var matrizPrioridade = createMatriz(5,5);
+      matrizPrioridade[0][0] = 'Muito Baixa';
+      matrizPrioridade[0][1] = 'Muito Baixa';
+      matrizPrioridade[0][2] = 'Baixa';
+      matrizPrioridade[0][3] = 'Média';
+      matrizPrioridade[0][4] = 'Média';
+      matrizPrioridade[1][0] = 'Muito Baixa';
+      matrizPrioridade[1][1] = 'Baixa';
+      matrizPrioridade[1][2] = 'Média';
+      matrizPrioridade[1][3] = 'Média';
+      matrizPrioridade[1][4] = 'Alta';
+      matrizPrioridade[2][0] = 'Muito Baixa';
+      matrizPrioridade[2][1] = 'Baixa';
+      matrizPrioridade[2][2] = 'Média';
+      matrizPrioridade[2][3] = 'Alta';
+      matrizPrioridade[2][4] = 'Alta';
+      matrizPrioridade[3][0] = 'Baixa';
+      matrizPrioridade[3][1] = 'Média';
+      matrizPrioridade[3][2] = 'Alta';
+      matrizPrioridade[3][3] = 'Alta';
+      matrizPrioridade[3][4] = 'Muito Alta';
+      matrizPrioridade[4][0] = 'Baixa';
+      matrizPrioridade[4][1] = 'Alta';
+      matrizPrioridade[4][2] = 'Muito Alta';
+      matrizPrioridade[4][3] = 'Muito Alta';
+      matrizPrioridade[4][4] = 'Muito Alta';
+      return matrizPrioridade;
+    }
+    function createMatriz(x,y){
+      mt = new Array();
+      for(i=0; i<x; i++){
+        mt[i] = new Array();
+        for(j=0; j<y; j++){
+          mt[i][j] = -1;
+        }
+      }
+    return mt;
+    }
+
   });
 </script>
 </div>
