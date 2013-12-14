@@ -13,6 +13,8 @@
   <% end %>
 
   <%= f.hidden_field :project_id, :value => @project.identifier %>
+  <%= hidden_field_tag 'fonte', @risco.fonte %>
+  <%= hidden_field_tag 'categoria', @risco.categoria %>
 
   <p>
     <%= f.label 'ID' %>
@@ -33,19 +35,19 @@
   <div class="splitcontentleft">
   <p>
     <%= f.label "Fonte" %>
-    <%= f.select(:fonte, options_for_select([['Ambiente organizacional','Ambiente organizacional'],['Usuário','Usuario'],['Requisitos','Requisitos'],['Complexidade do projeto','Complexidade do projeto'],['Planejamento e controle','Planejamento e controle'],['Time','Time']])) %>
+    <%= f.select(:fonte, options_for_select([['Selecione uma fonte',''],['Ambiente organizacional','Ambiente organizacional'],['Usuário','Usuário'],['Requisitos','Requisitos'],['Complexidade do projeto','Complexidade do projeto'],['Planejamento e controle','Planejamento e controle'],['Time','Time']])) %>
   </p>
   <p>
     <%= f.label "Categoria" %>
-    <%= f.select(:categoria, options_for_select([['Política organizacional', 'Politica organizacional'],['Apoio organizacional','Apoio organizacional'],['Ambiente','Ambiente'],['Envolvimento do usuário','Envolvimento do usuario'],['Usuário','Usuario'],['Requisitos funcionais','Requisitos funcionais'],['Requisitos não funcionais','Requisitos nao funcionais'],['Requisitos','Requisitos'],['Tecnologia utilizada','Tecnologia utilizada'],['Processos', 'Processos'],['Cronograma','Cronograma'],['Orçamento','Orcamento'],['Estimativa de duração','Estimativa de duracao'],['Gestores', 'Gestores'],['Insuficiência de equipe','Insuficiencia de equipe'],['Conhecimento','Conhecimento'],['Cooperação','Cooperacao'],['Motivação','Motivacao'],['Comunicação','Comunicacao']])) %>
-  </p>
+    <%= f.select(:categoria , options_for_select([['Selecione uma categoria','']])) %>
+  </p> 
   <p>
     <%= f.label "Probabilidade" %>    
-    <%= f.select(:probabilidade, options_for_select([['Muito Baixa','Muito Baixa'],['Baixa','Baixa'],['Média','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
+    <%= f.select(:probabilidade, options_for_select([['Muito Baixa','Muito Baixa'],['Baixa','Baixa'],['Média','Média'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
   </p>
   <p>
     <%= f.label 'Impacto'%>
-    <%= f.select(:impacto, options_for_select([['Muito Baixa','Muito Baixa'],['Baixa','Baixa'],['Média','Media'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
+    <%= f.select(:impacto, options_for_select([['Muito Baixa','Muito Baixa'],['Baixa','Baixa'],['Média','Média'],['Alta','Alta'],['Muito Alta','Muito Alta']]))  %>
   </p>
   <p>
     <%= f.label 'Prioridade' %>
@@ -79,4 +81,47 @@
     <%= f.submit "Salvar"%>
   </p>
 <% end %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var fonte = $('#fonte').val();
+    var categoria = $('#categoria').val();
+    console.log (fonte);
+    $('#risco_fonte').val(fonte);
+    carregarCategorias(fonte);
+    $('#risco_categoria').val(categoria);
+    $('#risco_fonte').change(function() {
+      var fonteSelected = $('#risco_fonte').val();
+      carregarCategorias(fonteSelected);
+    });
+
+    function carregarCategorias(fonteSelected){
+      var fontes = associarCategoriasAFontes();
+      if(fonteSelected == ""){
+        $("#risco_categoria").empty();
+        var html = "<option value=''> Selecione uma categoria</option>";
+        $("#risco_categoria").append(html);
+      }else{
+        var categorias = fontes[fonteSelected];
+        $("#risco_categoria").empty();
+        for (var i = 0; i < categorias.length ; i++) {
+          var html = '<option value="' +  categorias[i] +'">' + categorias[i] + '</option>';
+          $("#risco_categoria").append(html);
+        };
+      }
+    }
+
+    function associarCategoriasAFontes(){
+      var fontes = new Array();
+
+      fontes['Ambiente organizacional'] = ['Política organizacional','Apoio organizacional','Ambiente'];
+      fontes['Usuario'] = ['Envolvimento do usuário','Usuário'];
+      fontes['Requisitos'] = ['Requisitos funcionais', 'Requisitos não funcionais', 'Requisitos'];
+      fontes['Complexidade do projeto'] = ['Tecnologia utilizada', 'Processos'];
+      fontes['Planejamento e controle'] = ['Cronograma', 'Orçamento', 'Marcos', 'Estimativa de duração', 'Gestores'];
+      fontes['Time'] = ['Insuficiência de equipe', 'Conhecimento', 'Cooperação', 'Motivação', 'Comunicação'];
+
+      return fontes;
+    }
+  });
+</script>
 </div>
