@@ -1,4 +1,4 @@
-Projeto Redmine Riscos
+REDRISK
 ======================
 ##Instalação##
 No terminal digite os seguintes comando
