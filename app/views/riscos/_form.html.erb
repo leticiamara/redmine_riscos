@@ -20,6 +20,16 @@
     <%= f.label 'ID' %>
     <%= f.number_field :id, :value => @risco.id, :readonly => true %>
   </p>
+  <div class="splitcontentright">
+  <p>
+    <%= f.label "Esforço" %>
+    <%= f.time_select :esforco  %>
+  </p>
+  <p>
+    <%= f.label "Custo" %>
+    <%= f.text_field :custo, :value => (number_with_precision(@risco.custo, :precision => 2) || 0) %>
+  </p>
+  </div>
   <p>
     <%= f.label 'Título' %><span class="required">*</span>
     <%= f.text_field :titulo, :required => true %>
@@ -27,6 +37,10 @@
   <p>
     <%= f.label "Status" %>
     <%= f.select(:status, options_for_select([['Aberto', 'Aberto'],['Fechado','Fechado'],['Em Andamento','Em Andamento'],['Suspenso','Suspenso'],['Cancelado','Cancelado'], ['Rejeitado','Rejeitado'], ['Resolvido','Resolvido']])) %>
+  </p>
+  <p>
+    <%= f.label "Origem" %>
+    <%= f.select(:origem, options_for_select( [ ['Projeto', 'Projeto'], ['Organizacional', 'Organizacional'] ] )) %>
   </p>
   <p>
     <%= f.label "Descrição"%><span class="required">* </span>

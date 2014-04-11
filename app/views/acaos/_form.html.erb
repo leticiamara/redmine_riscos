@@ -17,6 +17,10 @@
     <%= f.number_field :id, :value => @acao.id, :readonly => true %>
   </p>
   <p>
+    <%= f.label 'Efetiva' %>
+    <%= f.check_box :efetivo, {:checked => false} %>
+  </p>
+  <p>
     <%= f.label 'Tipo' %>
     <%= f.select(:tipo, options_for_select([['Mitigação', 'Mitigação'],['Transferência','Transferência'],['Eliminação','Eliminação'],['Contigência','Contigência']])) %>
   </p>
