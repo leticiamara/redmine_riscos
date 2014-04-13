@@ -3,11 +3,11 @@
   <%= link_to_function 'Voltar', "history.back()", :class => 'icon icon-reload' %>
   <%= link_to 'Editar', edit_risco_path(@risco, :project_id => @project.identifier), :class => 'icon icon-edit' %>
   <td><%= link_to 'Excluir', risco_path(@risco, :project_id => @project.identifier), method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => 'icon icon-del' %></td>
+  <%= link_to 'Histórico', historico_risco_path(:risco => @risco, :project_id => @project.identifier), :class => 'icon icon-add' %>
 </div>
 <h2> 
   Risco #<%= @risco.id %>
 </h2>
-
 <div class='issue tracker-1 status-1 priority-2 priority-default created-by-me details'>
 <div class="subject">
   <h3>
@@ -69,6 +69,8 @@
 </tr>
 
 </table>
+
+
 <hr/>
 <%= render :template => 'acaos/index' %>
 <%= link_to 'Nova ação', new_acao_path(:risco_id => @risco.id), :class => 'icon icon-add' %>

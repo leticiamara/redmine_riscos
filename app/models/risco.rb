@@ -1,3 +1,4 @@
 class Risco < ActiveRecord::Base
-  unloadable
+	acts_as_versioned
+  	unloadable
 end

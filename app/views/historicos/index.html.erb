@@ -1,0 +1,7 @@
+<h2>Histórico</h2>
+
+<% for version in @historicos.reverse %>
+  
+<%=version.id %> (<%=version.updated_at %>)
+<% end %>
+
