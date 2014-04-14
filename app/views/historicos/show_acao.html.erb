@@ -1,0 +1,45 @@
+
+<div class="contextual">
+  <%= link_to_function 'Voltar', "history.back()", :class => 'icon icon-reload' %>
+</div>
+<h2> 
+  Ação #<%= @versao.acao_id %> - Versão <%= @versao.version %> alterada em: <%=@versao.updated_at.to_formatted_s(:long) %>
+</h2>
+
+<div class='issue tracker-1 status-1 priority-2 priority-default created-by-me details'>
+<div class="subject">
+<h3>Titulo: <%= @versao.titulo %></h3>
+  
+</div>
+<p>
+  
+</p>
+<p>
+  <b>Tipo:</b>
+  <%= @versao.tipo %>
+</p>
+
+<p>
+  <b>Descrição:</b>
+  <%= @versao.descricao %>
+</p>
+
+<p>
+  <b>Atribuído para:</b>
+  <%= @versao.atribuido_para %>
+</p>
+
+<p>
+  <b>Prazo:</b>
+  <%= @versao.prazo %>
+</p>
+
+<p>
+  <b>Data de conclusao:</b>
+  <%= @versao.data_de_conclusao %>
+</p>
+
+<p>
+  <b>Risco:</b>
+  <%= link_to '#'+ @versao.risco_id.to_s, risco_path(:id => @versao.risco_id, :project_id => @project.identifier) %>
+</p>

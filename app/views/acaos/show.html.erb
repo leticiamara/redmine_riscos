@@ -3,7 +3,7 @@
   <%= link_to_function 'Voltar', "history.back()", :class => 'icon icon-reload' %>
   <%= link_to 'Editar', edit_acao_path(@acao), :class => 'icon icon-edit' %>
   <%= link_to 'Excluir', acao_path(@acao), method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => 'icon icon-del' %>
-  <%= link_to 'Histórico', historico_acao_path(:acao => @acao, :project_id => @project.identifier), :class => 'icon icon-add' %>
+  <%= link_to 'Histórico', historico_acao_path(:acao => @acao, :project_id => @project.identifier), :class => 'icon icon-history' %>
 </div>
 <h2> 
   Ação #<%= @acao.id %>

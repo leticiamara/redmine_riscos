@@ -3,7 +3,7 @@
   <%= link_to_function 'Voltar', "history.back()", :class => 'icon icon-reload' %>
   <%= link_to 'Editar', edit_risco_path(@risco, :project_id => @project.identifier), :class => 'icon icon-edit' %>
   <td><%= link_to 'Excluir', risco_path(@risco, :project_id => @project.identifier), method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => 'icon icon-del' %></td>
-  <%= link_to 'Histórico', historico_risco_path(:risco => @risco, :project_id => @project.identifier), :class => 'icon icon-add' %>
+  <%= link_to 'Histórico', historico_risco_path(:risco => @risco, :project_id => @project.identifier), :class => 'icon icon-history' %>
 </div>
 <h2> 
   Risco #<%= @risco.id %>

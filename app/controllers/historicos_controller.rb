@@ -1,17 +1,23 @@
 class HistoricosController < ApplicationController
-before_filter :find_project , :only => [:index, :show, :new, :edit, :destroy]
-	def index
-		if params[:risco]
-			puts "passou no risco"
-			@risco = Risco.find params[:risco]
-			@historicos = @risco.versions
-		end
-		if params[:acao]
-			puts "passou na acao"
-			@acao = Acao.find params[:acao]
-			@historicos = @acao.versions
-			
-		end
+before_filter :find_project , :only => [:index_risco, :show_risco, :index_acao, :show_acao]
+	def index_risco
+		@risco = Risco.find params[:risco]
+		@historicos = @risco.versions
+	end
+	
+	def index_acao
+		@acao = Acao.find params[:acao]
+		@historicos = @acao.versions	
+	end
+
+	def show_risco
+		@risco = Risco.find params[:risco]
+		@versao = @risco.find_version(params[:versao])
+	end
+
+	def show_acao
+		@acao = Acao.find params[:acao]
+		@versao = @acao.find_version(params[:versao])
 	end
 
  protected

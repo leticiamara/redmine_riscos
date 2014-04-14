@@ -1,0 +1,67 @@
+<div class="contextual">
+  <%= link_to_function 'Voltar', "history.back()", :class => 'icon icon-reload' %>
+</div>
+<h2> 
+  Risco #<%= @versao.risco_id %> - Versão <%= @versao.version %> alterada em: <%=@versao.updated_at.to_formatted_s(:long) %>
+</h2>
+<div class='issue tracker-1 status-1 priority-2 priority-default created-by-me details'>
+<div class="subject">
+  <h3>
+    Título: <%= @versao.titulo %>
+  </h3>
+</div>
+
+<br/>
+
+<table class="attributes">
+<tr>
+  <th>Origem: </th>
+  <td><%= @versao.origem %></td>
+</tr>
+
+<tr>
+  <th >Descrição: </th>
+  <td ><%= @versao.descricao %></td>
+</tr>
+
+<tr> 
+  <th>Status: </th>
+  <td><%= @versao.status %></td>
+  <th>Fonte: </th>
+  <td><%= @versao.fonte %></td>
+</tr>
+
+<tr>
+  <th>Categoria: </th>
+  <td><%= @versao.categoria %></td>
+  <th>Data de identificação: </th>
+  <td><%= @versao.data_identificacao %></td>  
+</tr>
+
+<tr>
+  <th>Adicionado por: </th>
+  <td><%= @versao.criado_por %></td>
+  <th>Atribuído para: </th>
+  <td><%=@versao.dono %></td>
+</tr>
+
+<tr>
+  <th>Probabilidade: </th>
+  <td><%= @versao.probabilidade %></td>
+  <th>Impacto: </th>
+  <td><%=@versao.impacto %></td>
+</tr>
+
+<tr>
+  <th>Prioridade: </th>
+  <td><%= @versao.prioridade %></td>
+  <th>Estratégia: </th>
+  <td><%=@versao.estrategia %></td>
+</tr>
+
+<tr>
+  <th >Gatilho: </th>
+  <td ><%= @versao.gatilho %></td>
+</tr>
+</table>
+
