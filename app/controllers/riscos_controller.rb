@@ -61,7 +61,7 @@ class RiscosController < ApplicationController
 
     respond_to do |format|
       if @risco.save
-        format.html { redirect_to risco_path(@risco, :project_id => @risco.project_id), notice: 'Risco was successfully created.' }
+        format.html { redirect_to risco_path(@risco, :project_id => @risco.project_id), notice: 'Risco criado.' }
         format.json { render json: @risco, status: :created, location: @risco }
       else
         format.html { render action: "new" }
@@ -77,7 +77,7 @@ class RiscosController < ApplicationController
 
     respond_to do |format|
       if @risco.update_attributes(params[:risco])
-        format.html { redirect_to risco_path(@risco, :project_id => @risco.project_id), notice: 'Risco was successfully updated.' }
+        format.html { redirect_to risco_path(@risco, :project_id => @risco.project_id), notice: 'Risco atualizado.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

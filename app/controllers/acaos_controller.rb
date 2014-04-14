@@ -59,7 +59,7 @@ class AcaosController < ApplicationController
 
     respond_to do |format|
       if @acao.save
-        format.html { redirect_to @acao, notice: 'Acao was successfully created.' }
+        format.html { redirect_to @acao, notice: 'Ação criada.' }
         format.json { render json: @acao, status: :created, location: @acao }
       else
         format.html { render action: "new" }
@@ -75,7 +75,7 @@ class AcaosController < ApplicationController
 
     respond_to do |format|
       if @acao.update_attributes(params[:acao])
-        format.html { redirect_to acao_url(@acao), notice: 'Acao was successfully updated.' }
+        format.html { redirect_to acao_url(@acao), notice: 'Ação atualizada.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
